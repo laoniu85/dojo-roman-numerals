@@ -28,6 +28,7 @@ public class ReverseRomanNumerals {
             return this;
         }
     }
+    //发现规律 9 8 7 6 4 5 3 2 1
     //TODO: 可能可以用责任链模式
     public static int convert(String numberString) {
         Result resultOne = covertOne(numberString);

@@ -32,29 +32,13 @@ public class ReverseRomanNumerals {
     }
 
     //发现规律 9 8 7 6 4 5 3 2 1
-    //TODO: 可能可以用责任链模式
+    //TODO: 可能可以用责任链模式 似乎没有必要
     public static int convert(String numberString) {
-        Result resultOne = covertOne(numberString);
-        Result resultTen = convertTen(resultOne.getRemainString());
-        Result resultHundred = convertHundred(resultTen.getRemainString());
-        Result resultThousand = convertThousand(resultHundred.getRemainString());
+        Result resultOne = One.reverseConvert(numberString);
+        Result resultTen = Ten.reverseConvert(resultOne.getRemainString());
+        Result resultHundred = Hundred.reverseConvert(resultTen.getRemainString());
+        Result resultThousand = Thousand.reverseConvert(resultHundred.getRemainString());
         return resultOne.getNum() + resultTen.getNum() * 10 + resultHundred.getNum() * 100 + resultThousand.getNum() * 1000;
-    }
-
-    private static Result convertHundred(String numberString) {
-        return Hundred.reverseConvert(numberString);
-    }
-
-    private static Result convertTen(String numberString) {
-        return Ten.reverseConvert(numberString);
-    }
-
-    private static Result covertOne(String numberString) {
-        return One.reverseConvert(numberString);
-    }
-
-    private static Result convertThousand(String numberString) {
-        return Thousand.reverseConvert(numberString);
     }
 
 

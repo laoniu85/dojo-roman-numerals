@@ -1,8 +1,6 @@
 package com.laoniu;
 
-import static com.laoniu.RomanNumber.Hundred;
-import static com.laoniu.RomanNumber.One;
-import static com.laoniu.RomanNumber.Ten;
+import static com.laoniu.RomanNumber.*;
 
 public class ReverseRomanNumerals {
     static class Result {
@@ -35,6 +33,7 @@ public class ReverseRomanNumerals {
 
     //发现规律 9 8 7 6 4 5 3 2 1
     static int[] numbers = new int[]{9, 8, 7, 6, 4, 5, 3, 2, 1};
+    static int[] numbers2 = new int[]{4, 3, 2, 1};
 
     //TODO: 可能可以用责任链模式
     public static int convert(String numberString) {
@@ -46,7 +45,7 @@ public class ReverseRomanNumerals {
     }
 
     private static Result convertHundred(String numberString) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numberString.endsWith(Hundred.getNumbers()[numbers[i]])) {
                 return new Result(numberString.substring(0, numberString.length() - Hundred.getNumbers()[numbers[i]].length()), numbers[i]);
             }
@@ -54,8 +53,9 @@ public class ReverseRomanNumerals {
 
         return new Result(numberString, 0);
     }
+
     private static Result convertTen(String numberString) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numberString.endsWith(Ten.getNumbers()[numbers[i]])) {
                 return new Result(numberString.substring(0, numberString.length() - Ten.getNumbers()[numbers[i]].length()), numbers[i]);
             }
@@ -64,7 +64,7 @@ public class ReverseRomanNumerals {
     }
 
     private static Result covertOne(String numberString) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             if (numberString.endsWith(One.getNumbers()[numbers[i]])) {
                 return new Result(numberString.substring(0, numberString.length() - One.getNumbers()[numbers[i]].length()), numbers[i]);
             }
@@ -73,17 +73,10 @@ public class ReverseRomanNumerals {
     }
 
     private static Result convertThousand(String numberString) {
-        if (numberString.endsWith("MMMM")) {
-            return new Result(numberString.substring(0, numberString.length() - 4), 4);
-        }
-        if (numberString.endsWith("MMM")) {
-            return new Result(numberString.substring(0, numberString.length() - 3), 3);
-        }
-        if (numberString.endsWith("MM")) {
-            return new Result(numberString.substring(0, numberString.length() - 2), 2);
-        }
-        if (numberString.endsWith("M")) {
-            return new Result(numberString.substring(0, numberString.length() - 1), 1);
+        for (int i = 0; i < numbers2.length; i++) {
+            if (numberString.endsWith(Thousand.getNumbers()[numbers2[i]])) {
+                return new Result(numberString.substring(0, numberString.length() - One.getNumbers()[numbers2[i]].length()), numbers2[i]);
+            }
         }
         return new Result(numberString, 0);
     }

@@ -45,40 +45,19 @@ public class ReverseRomanNumerals {
     }
 
     private static Result convertHundred(String numberString) {
-        for (int i = 0; i < numbers.length; i++) {
-            if (numberString.endsWith(Hundred.getNumbers()[numbers[i]])) {
-                return new Result(numberString.substring(0, numberString.length() - Hundred.getNumbers()[numbers[i]].length()), numbers[i]);
-            }
-        }
-
-        return new Result(numberString, 0);
+        return Hundred.reverseConvert(numberString);
     }
 
     private static Result convertTen(String numberString) {
-        for (int i = 0; i < numbers.length; i++) {
-            if (numberString.endsWith(Ten.getNumbers()[numbers[i]])) {
-                return new Result(numberString.substring(0, numberString.length() - Ten.getNumbers()[numbers[i]].length()), numbers[i]);
-            }
-        }
-        return new Result(numberString, 0);
+        return Ten.reverseConvert(numberString);
     }
 
     private static Result covertOne(String numberString) {
-        for (int i = 0; i < numbers.length; i++) {
-            if (numberString.endsWith(One.getNumbers()[numbers[i]])) {
-                return new Result(numberString.substring(0, numberString.length() - One.getNumbers()[numbers[i]].length()), numbers[i]);
-            }
-        }
-        return new Result(numberString, 0);
+        return One.reverseConvert(numberString);
     }
 
     private static Result convertThousand(String numberString) {
-        for (int i = 0; i < numbers2.length; i++) {
-            if (numberString.endsWith(Thousand.getNumbers()[numbers2[i]])) {
-                return new Result(numberString.substring(0, numberString.length() - One.getNumbers()[numbers2[i]].length()), numbers2[i]);
-            }
-        }
-        return new Result(numberString, 0);
+        return Thousand.reverseConvert(numberString);
     }
 
 

@@ -14,11 +14,19 @@ public abstract class RomanNumber {
     String[] numbers;
 
 
-
     private static class NormalNumber extends RomanNumber {
+
+        static int[] indexOrders = new int[]{9, 8, 7, 6, 4, 5, 3, 2, 1};
+
         NormalNumber(String one, String five, String ten) {
             super(one, five, ten);
         }
+
+        @Override
+        public int[] getIndexOrders() {
+            return indexOrders;
+        }
+
 
         @Override
         public String abstractGetNumberString(int number) {
@@ -46,8 +54,16 @@ public abstract class RomanNumber {
     }
 
     private static class ThousandNumber extends RomanNumber {
+
+        static int[] indexOrders = new int[]{4, 3, 2, 1};
+
         ThousandNumber(String one, String five, String ten) {
             super(one, five, ten);
+        }
+
+        @Override
+        public int[] getIndexOrders() {
+            return indexOrders;
         }
 
         @Override
@@ -78,7 +94,18 @@ public abstract class RomanNumber {
         }
     }
 
+    public abstract int[] getIndexOrders();
+
     public abstract String abstractGetNumberString(int number);
+
+    public ReverseRomanNumerals.Result reverseConvert(String numberString) {
+        for (int i = 0; i < getIndexOrders().length; i++) {
+            if (numberString.endsWith(getNumbers()[getIndexOrders()[i]])) {
+                return new ReverseRomanNumerals.Result(numberString.substring(0, numberString.length() - getNumbers()[getIndexOrders()[i]].length()), getIndexOrders()[i]);
+            }
+        }
+        return new ReverseRomanNumerals.Result(numberString, 0);
+    }
 
     public void getNumberString(int number, StringBuilder sb) {
         sb.append(numbers[number]);

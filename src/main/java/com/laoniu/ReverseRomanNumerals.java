@@ -2,21 +2,18 @@ package com.laoniu;
 
 public class ReverseRomanNumerals {
     public static int convert(String numberString) {
-        Integer x = covertOne(numberString);
-        if (x != null) return x;
+        int sum = 0;
+        sum += covertOne(numberString);
 
-        Integer x1 = convertTen(numberString);
-        if (x1 != null) return x1 * 10;
+        sum += convertTen(numberString);
 
-        Integer x2 = convertHundred(numberString);
-        if (x2 != null) return x2 * 100;
+        sum += convertHundred(numberString);
 
-        Integer x3 = convertThousand(numberString);
-        if (x3 != null) return x3 * 1000;
-        return 0;
+        sum += convertThousand(numberString);
+        return sum;
     }
 
-    private static Integer convertHundred(String numberString) {
+    private static int convertHundred(String numberString) {
         if (numberString.equals("C")) {
             return 1;
         }
@@ -44,7 +41,7 @@ public class ReverseRomanNumerals {
         if (numberString.equals("CM")) {
             return 9;
         }
-        return null;
+        return 0;
     }
 
     private static Integer convertThousand(String numberString) {
@@ -60,10 +57,10 @@ public class ReverseRomanNumerals {
         if (numberString.equals("MMMM")) {
             return 4;
         }
-        return null;
+        return 0;
     }
 
-    private static Integer convertTen(String numberString) {
+    private static int convertTen(String numberString) {
         if (numberString.equals("X")) {
             return 1;
         }
@@ -91,10 +88,10 @@ public class ReverseRomanNumerals {
         if (numberString.equals("XC")) {
             return 9;
         }
-        return null;
+        return 0;
     }
 
-    private static Integer covertOne(String numberString) {
+    private static int covertOne(String numberString) {
         if (numberString.equals("I")) {
             return 1;
         }
@@ -122,6 +119,6 @@ public class ReverseRomanNumerals {
         if (numberString.equals("IX")) {
             return 9;
         }
-        return null;
+        return 0;
     }
 }

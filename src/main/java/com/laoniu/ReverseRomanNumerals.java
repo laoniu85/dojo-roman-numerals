@@ -1,124 +1,158 @@
 package com.laoniu;
 
 public class ReverseRomanNumerals {
+    static class Result {
+        String remainString;
+        int num;
+
+        public Result(String remainString, int num) {
+            this.remainString = remainString;
+            this.num = num;
+        }
+
+        public String getRemainString() {
+            return remainString;
+        }
+
+        public Result setRemainString(String remainString) {
+            this.remainString = remainString;
+            return this;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public Result setNum(int num) {
+            this.num = num;
+            return this;
+        }
+    }
+    //TODO: 可能可以用责任链模式
     public static int convert(String numberString) {
-        int sum = 0;
-        sum += covertOne(numberString);
-
-        sum += convertTen(numberString);
-
-        sum += convertHundred(numberString);
-
-        sum += convertThousand(numberString);
-        return sum;
+        Result resultOne = covertOne(numberString);
+        Result resultTen = convertTen(resultOne.getRemainString());
+        Result resultHundred = convertHundred(resultTen.getRemainString());
+        Result resultThousand = convertThousand(resultHundred.getRemainString());
+        return resultOne.getNum() + resultTen.getNum() * 10 + resultHundred.getNum() * 100 + resultThousand.getNum() * 1000;
     }
 
-    private static int convertHundred(String numberString) {
-        if (numberString.equals("C")) {
-            return 1;
+    private static Result convertHundred(String numberString) {
+        if (numberString.endsWith("CM")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 9);
         }
-        if (numberString.equals("CC")) {
-            return 2;
+        if (numberString.endsWith("DCCC")) {
+            return new Result(numberString.substring(0, numberString.length() - 4), 8);
         }
-        if (numberString.equals("CCC")) {
-            return 3;
+        if (numberString.endsWith("DCC")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 7);
         }
-        if (numberString.equals("CD")) {
-            return 4;
+        if (numberString.endsWith("DC")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 6);
         }
-        if (numberString.equals("D")) {
-            return 5;
+        if (numberString.endsWith("CD")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 4);
         }
-        if (numberString.equals("DC")) {
-            return 6;
+        if (numberString.endsWith("D")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 5);
         }
-        if (numberString.equals("DCC")) {
-            return 7;
+        if (numberString.endsWith("CCC")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 3);
         }
-        if (numberString.equals("DCCC")) {
-            return 8;
+        if (numberString.endsWith("CC")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 2);
         }
-        if (numberString.equals("CM")) {
-            return 9;
+        if (numberString.endsWith("C")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 1);
         }
-        return 0;
+        return new Result(numberString, 0);
     }
 
-    private static Integer convertThousand(String numberString) {
-        if (numberString.equals("M")) {
-            return 1;
+    private static Result convertThousand(String numberString) {
+        if (numberString.endsWith("MMMM")) {
+            return new Result(numberString.substring(0, numberString.length() - 4), 4);
         }
-        if (numberString.equals("MM")) {
-            return 2;
+        if (numberString.endsWith("MMM")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 3);
         }
-        if (numberString.equals("MMM")) {
-            return 3;
+        if (numberString.endsWith("MM")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 2);
         }
-        if (numberString.equals("MMMM")) {
-            return 4;
+        if (numberString.endsWith("M")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 1);
         }
-        return 0;
+        return new Result(numberString, 0);
     }
 
-    private static int convertTen(String numberString) {
-        if (numberString.equals("X")) {
-            return 1;
+    private static Result convertTen(String numberString) {
+
+        if (numberString.endsWith("XC")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 9);
         }
-        if (numberString.equals("XX")) {
-            return 2;
+        if (numberString.endsWith("LXXX")) {
+            return new Result(numberString.substring(0, numberString.length() - 4), 8);
         }
-        if (numberString.equals("XXX")) {
-            return 3;
+        if (numberString.endsWith("LXX")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 7);
         }
-        if (numberString.equals("XL")) {
-            return 4;
+        if (numberString.endsWith("LX")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 6);
         }
-        if (numberString.equals("L")) {
-            return 5;
+        if (numberString.endsWith("XL")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 4);
         }
-        if (numberString.equals("LX")) {
-            return 6;
+        if (numberString.endsWith("L")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 5);
         }
-        if (numberString.equals("LXX")) {
-            return 7;
+        if (numberString.endsWith("XXX")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 3);
+
         }
-        if (numberString.equals("LXXX")) {
-            return 8;
+        if (numberString.endsWith("XX")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 2);
+
         }
-        if (numberString.equals("XC")) {
-            return 9;
+        if (numberString.endsWith("X")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 1);
+
         }
-        return 0;
+        return new Result(numberString, 0);
     }
 
-    private static int covertOne(String numberString) {
-        if (numberString.equals("I")) {
-            return 1;
+    private static Result covertOne(String numberString) {
+        if (numberString.endsWith("IX")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 9);
         }
-        if (numberString.equals("II")) {
-            return 2;
+        if (numberString.endsWith("VIII")) {
+            return new Result(numberString.substring(0, numberString.length() - 4), 8);
         }
-        if (numberString.equals("III")) {
-            return 3;
+        if (numberString.endsWith("VII")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 7);
         }
-        if (numberString.equals("IV")) {
-            return 4;
+        if (numberString.endsWith("VI")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 6);
+
         }
-        if (numberString.equals("V")) {
-            return 5;
+        if (numberString.endsWith("IV")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 4);
+
         }
-        if (numberString.equals("VI")) {
-            return 6;
+        if (numberString.endsWith("V")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 5);
+
         }
-        if (numberString.equals("VII")) {
-            return 7;
+        if (numberString.endsWith("III")) {
+            return new Result(numberString.substring(0, numberString.length() - 3), 3);
+
         }
-        if (numberString.equals("VIII")) {
-            return 8;
+        if (numberString.endsWith("II")) {
+            return new Result(numberString.substring(0, numberString.length() - 2), 2);
+
         }
-        if (numberString.equals("IX")) {
-            return 9;
+        if (numberString.endsWith("I")) {
+            return new Result(numberString.substring(0, numberString.length() - 1), 1);
+
         }
-        return 0;
+        return new Result(numberString, 0);
     }
 }

@@ -56,10 +56,10 @@ public class TestReverseRoman {
 
     @Test
     public void test_others() {
-//        assertEquals(ReverseRomanNumerals.convert("MCMXC"),1990);
-//        assertEquals(ReverseRomanNumerals.convert("MMVIII"),2008);
-//        assertEquals(ReverseRomanNumerals.convert("XCIX"),99);
-//        assertEquals(ReverseRomanNumerals.convert("XLVII"),47);
+        assertEquals(ReverseRomanNumerals.convert("MCMXC"),1990);
+        assertEquals(ReverseRomanNumerals.convert("MMVIII"),2008);
+        assertEquals(ReverseRomanNumerals.convert("XCIX"),99);
+        assertEquals(ReverseRomanNumerals.convert("XLVII"),47);
     }
 
 }

@@ -1,12 +1,14 @@
 package com.laoniu;
 
+import static com.laoniu.RomanNumber.*;
+
 public class RomanNumerals {
     public static String convert(int number) {
         StringBuilder sb = new StringBuilder();
-        new RomanNumber(sb, "M", "", "").getNumberStringB((number / 1000) % 10);
-        new RomanNumber(sb, "C", "D", "M").getNumberStringA((number / 100) % 10);
-        new RomanNumber(sb, "X", "L", "C").getNumberStringA((number / 10) % 10);
-        new RomanNumber(sb, "I", "V", "X").getNumberStringA(number % 10);
+        Thousand.getNumberString((number / 1000) % 10, sb);
+        Hundred.getNumberString((number / 100) % 10, sb);
+        Ten.getNumberString((number / 10) % 10, sb);
+        One.getNumberString(number % 10, sb);
         return sb.toString();
     }
 }

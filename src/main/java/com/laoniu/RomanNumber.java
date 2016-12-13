@@ -12,6 +12,9 @@ public abstract class RomanNumber {
     public static RomanNumber Hundred = new NormalNumber("C", "D", "M");
     public static RomanNumber Thousand = new ThousandNumber("M", "", "");
     String[] numbers;
+
+
+
     private static class NormalNumber extends RomanNumber {
         NormalNumber(String one, String five, String ten) {
             super(one, five, ten);
@@ -79,6 +82,10 @@ public abstract class RomanNumber {
 
     public void getNumberString(int number, StringBuilder sb) {
         sb.append(numbers[number]);
+    }
+
+    public String[] getNumbers() {
+        return numbers;
     }
 
 

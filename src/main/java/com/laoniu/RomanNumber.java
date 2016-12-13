@@ -8,8 +8,8 @@ public class RomanNumber {
     private String nine;
 
     public static RomanNumber One = new RomanNumber("I", "V", "X");
-    public static RomanNumber Ten = new RomanNumber("C", "D", "M");
-    public static RomanNumber Hundred = new RomanNumber("X", "L", "C");
+    public static RomanNumber Ten = new RomanNumber("X", "L", "C");
+    public static RomanNumber Hundred = new RomanNumber("C", "D", "M");
     public static RomanNumber Thousand = new ThousandNumber("M", "", "");
 
     private static class ThousandNumber extends RomanNumber {

@@ -4,6 +4,8 @@ public class RomanNumber {
     String one;
     private String five;
     private String ten;
+    private String four;
+    private String nine;
 
     public static RomanNumber One = new RomanNumber("I", "V", "X");
     public static RomanNumber Ten = new RomanNumber("C", "D", "M");
@@ -29,6 +31,8 @@ public class RomanNumber {
         this.one = one;
         this.five = five;
         this.ten = ten;
+        this.four = one + five;
+        this.nine = one + ten;
     }
 
 
@@ -39,10 +43,10 @@ public class RomanNumber {
             }
         }
         if (number == 4) {
-            sb.append(one).append(five);
+            sb.append(four);
         }
         if (number == 9) {
-            sb.append(one).append(ten);
+            sb.append(nine);
         }
         if (number < 9 && number >= 5) {
             sb.append(five);

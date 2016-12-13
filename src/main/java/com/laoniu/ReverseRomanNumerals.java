@@ -32,9 +32,6 @@ public class ReverseRomanNumerals {
     }
 
     //发现规律 9 8 7 6 4 5 3 2 1
-    static int[] numbers = new int[]{9, 8, 7, 6, 4, 5, 3, 2, 1};
-    static int[] numbers2 = new int[]{4, 3, 2, 1};
-
     //TODO: 可能可以用责任链模式
     public static int convert(String numberString) {
         Result resultOne = covertOne(numberString);
